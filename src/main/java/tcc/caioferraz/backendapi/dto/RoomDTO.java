@@ -1,4 +1,6 @@
-package tcc.caioferraz.backendapi.domain.rooms;
+package tcc.caioferraz.backendapi.dto;
+
+import tcc.caioferraz.backendapi.domain.rooms.RoomEnum;
 
 public record RoomDTO(
         Integer number,
@@ -6,4 +8,5 @@ public record RoomDTO(
         Integer bedQuantity,
         String description,
         Double dailyRate
-        ) {}
+) {
+}
