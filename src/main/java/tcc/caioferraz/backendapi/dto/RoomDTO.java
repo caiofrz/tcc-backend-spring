@@ -2,9 +2,7 @@ package tcc.caioferraz.backendapi.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Positive;
-import lombok.Getter;
 
-@Getter
 public record RoomDTO(
         @NotBlank(message = "O número do quarto não pode estar em branco ou nulo!")
         String number,

@@ -19,11 +19,11 @@ public class RoomModel {
   private UUID uid;
 
   @Column(unique = true, nullable = false)
-  private Integer number;
+  private String number;
 
   @Column(unique = true, nullable = false)
   @Enumerated(EnumType.STRING)
-  private RoomEnum type;
+  private TypeRoomEnum type;
 
   @Column(unique = true, nullable = false)
   private Integer bedQuantity;
