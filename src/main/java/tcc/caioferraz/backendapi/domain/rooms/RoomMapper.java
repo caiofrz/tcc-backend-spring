@@ -5,7 +5,7 @@ import org.mapstruct.factory.Mappers;
 import tcc.caioferraz.backendapi.dto.RoomDTO;
 import tcc.caioferraz.backendapi.shared.mapper.Mapper;
 
-@org.mapstruct.Mapper
+@org.mapstruct.Mapper(componentModel = "spring")
 public interface RoomMapper extends Mapper<RoomDTO, RoomModel> {
 
   RoomMapper INSTANCE = Mappers.getMapper(RoomMapper.class);
@@ -20,7 +20,7 @@ public interface RoomMapper extends Mapper<RoomDTO, RoomModel> {
 
   @Override
   @Mapping(source = "number", target = "number")
-  @Mapping(target = "type", defaultExpression = "java(TypeRoomEnum.valueOf(dto.type()))")
+  @Mapping(target = "type", expression = "java(TypeRoomEnum.fromType(dto.type()))")
   @Mapping(source = "bedQuantity", target = "bedQuantity")
   @Mapping(source = "description", target = "description")
   @Mapping(source = "dailyRate", target = "dailyRate")
