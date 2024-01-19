@@ -11,7 +11,6 @@ import tcc.caioferraz.backendapi.domain.rooms.RoomMapper;
 import tcc.caioferraz.backendapi.domain.rooms.RoomModel;
 import tcc.caioferraz.backendapi.domain.rooms.RoomsService;
 import tcc.caioferraz.backendapi.dto.RoomDTO;
-import tcc.caioferraz.backendapi.shared.mapper.Mapper;
 
 import java.util.UUID;
 
@@ -21,7 +20,7 @@ import java.util.UUID;
 public class RoomsController {
 
   private final RoomsService service;
-  private final RoomMapper mapper = RoomMapper.INSTANCE;
+  private final RoomMapper mapper;
 
   @GetMapping
   public ResponseEntity<Page<RoomModel>> findAll(Pageable pageable) {
@@ -37,5 +36,17 @@ public class RoomsController {
   public ResponseEntity<RoomModel> save(@Valid @RequestBody RoomDTO roomDTO) {
     RoomModel room = mapper.toEntity(roomDTO);
     return ResponseEntity.status(HttpStatus.CREATED).body(this.service.save(room));
+  }
+
+  @PutMapping("/{uid}")
+  public ResponseEntity<RoomModel> update(@PathVariable UUID uid,
+                                          @Valid @RequestBody RoomDTO roomDTO) {
+    return ResponseEntity.status(HttpStatus.CREATED).body(this.service.update(uid, roomDTO));
+  }
+
+  @DeleteMapping("/{uid}")
+  public ResponseEntity<RoomModel> update(@PathVariable UUID uid) {
+    this.service.delete(uid);
+    return ResponseEntity.noContent().build();
   }
 }
