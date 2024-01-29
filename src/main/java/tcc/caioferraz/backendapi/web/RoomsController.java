@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import tcc.caioferraz.backendapi.domain.rooms.RoomMapper;
 import tcc.caioferraz.backendapi.domain.rooms.RoomModel;
 import tcc.caioferraz.backendapi.domain.rooms.RoomsService;
+import tcc.caioferraz.backendapi.dto.PageResponseDTO;
 import tcc.caioferraz.backendapi.dto.RoomDTO;
 
 import java.util.UUID;
@@ -23,7 +24,7 @@ public class RoomsController {
   private final RoomMapper mapper;
 
   @GetMapping
-  public ResponseEntity<Page<RoomModel>> findAll(Pageable pageable) {
+  public ResponseEntity<PageResponseDTO> findAll(Pageable pageable) {
     return ResponseEntity.ok(this.service.findAll(pageable));
   }
 
