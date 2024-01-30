@@ -3,6 +3,7 @@ package tcc.caioferraz.backendapi.domain.rooms;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.util.UUID;
 
 @Entity
@@ -19,11 +20,11 @@ public class RoomModel {
   private UUID uid;
 
   @Column(unique = true, nullable = false)
-  private Integer number;
+  private String number;
 
   @Column(unique = true, nullable = false)
   @Enumerated(EnumType.STRING)
-  private RoomEnum type;
+  private TypeRoomEnum type;
 
   @Column(unique = true, nullable = false)
   private Integer bedQuantity;
@@ -32,7 +33,7 @@ public class RoomModel {
   private String description;
 
   @Column(unique = true, nullable = false)
-  private Double dailyRate;
+  private BigDecimal dailyRate;
 
   @Column(unique = true, nullable = false)
   private Boolean isOcuped;

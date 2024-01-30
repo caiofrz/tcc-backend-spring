@@ -7,4 +7,7 @@ import java.util.UUID;
 
 @Repository
 public interface RoomsRepository extends JpaRepository<RoomModel, UUID> {
+
+
+  boolean existsByNumber(String number);
 }
