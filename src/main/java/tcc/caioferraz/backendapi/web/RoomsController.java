@@ -17,6 +17,7 @@ import java.util.UUID;
 
 @RestController
 @RequestMapping("/rooms")
+@CrossOrigin
 @RequiredArgsConstructor
 public class RoomsController {
 
