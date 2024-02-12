@@ -22,19 +22,19 @@ public class RoomModel {
   @Column(unique = true, nullable = false)
   private String number;
 
-  @Column(unique = true, nullable = false)
+  @Column(nullable = false)
   @Enumerated(EnumType.STRING)
   private TypeRoomEnum type;
 
-  @Column(unique = true, nullable = false)
+  @Column(nullable = false)
   private Integer bedQuantity;
 
-  @Column(unique = true, nullable = false)
+  @Column(nullable = false)
   private String description;
 
-  @Column(unique = true, nullable = false)
+  @Column(nullable = false)
   private BigDecimal dailyRate;
 
-  @Column(unique = true, nullable = false)
+  @Column(nullable = false)
   private Boolean isOcuped;
 }
