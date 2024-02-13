@@ -1,7 +1,9 @@
 package tcc.caioferraz.backendapi.shared.exception;
 
+import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.UnexpectedTypeException;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +12,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+import org.springframework.web.servlet.resource.NoResourceFoundException;
 import tcc.caioferraz.backendapi.domain.rooms.exceptions.RoomAlreadyCreatedException;
 import tcc.caioferraz.backendapi.domain.rooms.exceptions.RoomNotFoundException;
 
@@ -29,6 +32,13 @@ public class GlobalExceptionHandler {
 
   @ExceptionHandler(RoomNotFoundException.class)
   public ResponseEntity<ErrorResponse> handleException(RoomNotFoundException ex,
+                                                       HttpServletRequest request) {
+    return response(LocalDateTime.now(), HttpStatus.NOT_FOUND,
+            ex.getMessage(), HttpStatus.NOT_FOUND.getReasonPhrase(), request);
+  }
+
+  @ExceptionHandler(EntityNotFoundException.class)
+  public ResponseEntity<ErrorResponse> handleException(EntityNotFoundException ex,
                                                        HttpServletRequest request) {
     return response(LocalDateTime.now(), HttpStatus.NOT_FOUND,
             ex.getMessage(), HttpStatus.NOT_FOUND.getReasonPhrase(), request);
@@ -60,6 +70,20 @@ public class GlobalExceptionHandler {
                                                        HttpServletRequest request) {
     return response(LocalDateTime.now(), HttpStatus.BAD_REQUEST,
             ex.getMessage(), HttpStatus.BAD_REQUEST.getReasonPhrase(), request);
+  }
+
+  @ExceptionHandler(UnexpectedTypeException.class)
+  public ResponseEntity<ErrorResponse> handleException(UnexpectedTypeException ex,
+                                                       HttpServletRequest request) {
+    return response(LocalDateTime.now(), HttpStatus.BAD_REQUEST,
+            ex.getMessage(), HttpStatus.BAD_REQUEST.getReasonPhrase(), request);
+  }
+
+  @ExceptionHandler(NoResourceFoundException.class)
+  public ResponseEntity<ErrorResponse> handleException(NoResourceFoundException ex,
+                                                       HttpServletRequest request) {
+    return response(LocalDateTime.now(), HttpStatus.BAD_REQUEST,
+            ex.getMessage(), "Recurso inexistente ou indisponível.", request);
   }
 
   @ExceptionHandler(MethodArgumentNotValidException.class)
