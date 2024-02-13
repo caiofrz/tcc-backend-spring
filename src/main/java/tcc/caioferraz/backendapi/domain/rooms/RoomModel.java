@@ -1,5 +1,6 @@
 package tcc.caioferraz.backendapi.domain.rooms;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -13,8 +14,10 @@ import java.util.UUID;
 @Builder
 @Getter
 @Setter
+@Schema(description = "Room Model Information")
 public class RoomModel {
 
+  @Schema(accessMode = Schema.AccessMode.READ_ONLY, description = "Room Uid", example = "86219ee6-aefc-4ed8-b59d-c0b5b3f1a3e3")
   @Id
   @GeneratedValue(strategy = GenerationType.UUID)
   private UUID uid;
