@@ -1,13 +1,9 @@
 package tcc.caioferraz.backendapi.domain.rooms;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Positive;
-import jakarta.validation.constraints.PositiveOrZero;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +12,6 @@ import tcc.caioferraz.backendapi.domain.rooms.exceptions.RoomNotFoundException;
 import tcc.caioferraz.backendapi.dto.PageResponseDTO;
 import tcc.caioferraz.backendapi.dto.RoomDTO;
 
-import java.util.List;
 import java.util.UUID;
 
 @Service
